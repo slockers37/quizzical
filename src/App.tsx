@@ -4,22 +4,30 @@ import QuizPage from "./components/QuizPage";
 import StartPage from "./components/StartPage";
 
 function App() {
-  const [hasStarted, setHasStarted] = useState(false);
+  const [isStartPage, setIsStartPage] = useState(true);
   const [difficulty, setDifficulty] = useState("easy");
   const [category, setCategory] = useState("18");
 
   const startQuiz = (difficulty: string, category: string) => {
     setDifficulty(difficulty);
     setCategory(category);
-    setHasStarted(true);
+    setIsStartPage(false);
+  };
+
+  const resetQuiz = () => {
+    setIsStartPage(true);
   };
 
   return (
     <div className="flex justify-center items-center bg-blue-50 h-screen">
-      {hasStarted ? (
-        <QuizPage difficulty={difficulty} category={category} />
-      ) : (
+      {isStartPage ? (
         <StartPage startQuiz={startQuiz} />
+      ) : (
+        <QuizPage
+          difficulty={difficulty}
+          category={category}
+          resetQuiz={resetQuiz}
+        />
       )}
     </div>
   );

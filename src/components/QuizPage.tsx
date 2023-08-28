@@ -17,9 +17,10 @@ interface Quiz extends Question {
 interface QuizPageProps {
   difficulty: string;
   category: string;
+  resetQuiz: () => void;
 }
 
-const QuizPage = ({ difficulty, category }: QuizPageProps) => {
+const QuizPage = ({ difficulty, category, resetQuiz }: QuizPageProps) => {
   const [quiz, setQuiz] = useState<Quiz[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedAnswers, setSelectedAnswers] = useState<{
@@ -133,7 +134,10 @@ const QuizPage = ({ difficulty, category }: QuizPageProps) => {
       ) : (
         // Render Quiz
         <>
-          <h1 className="flex w-full justify-center mt-10 mb-14 font-bold font-karla text-5xl text-[#293264]">
+          <h1
+            onClick={resetQuiz}
+            className="flex w-full justify-center cursor-pointer mt-10 mb-14 font-bold font-karla text-5xl text-[#293264]"
+          >
             Quizzical
           </h1>
           {renderedQuestions}
