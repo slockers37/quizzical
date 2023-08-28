@@ -144,7 +144,7 @@ const QuizPage = ({ difficulty, category, resetQuiz }: QuizPageProps) => {
             {renderedQuestions}
             {hasCheckedAnswers ? (
               <div className="flex justify-center items-center space-x-4">
-                <p className="my-10 py-4 px-6 text-md md:text-lg lg:text-xl">
+                <p className="my-10 py-4 px-6 text-[#4D5B9E] text-md md:text-lg lg:text-xl">
                   You scored {score}/{quiz.length} correct answers
                 </p>
                 <button
