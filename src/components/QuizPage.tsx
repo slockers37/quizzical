@@ -16,6 +16,7 @@ interface Quiz extends Question {
 
 const QuizPage = () => {
   const [quiz, setQuiz] = useState<Quiz[]>([]);
+  const [loading, setLoading] = useState(true);
   const [selectedAnswers, setSelectedAnswers] = useState<{
     [key: string]: string;
   }>({});
@@ -24,6 +25,7 @@ const QuizPage = () => {
   const [score, setScore] = useState<number | null>(null);
 
   const getQuiz = async () => {
+    setLoading(true);
     const QUIZ_URL =
       "https://opentdb.com/api.php?amount=5&category=18&difficulty=easy&type=multiple";
     const res = await fetch(QUIZ_URL);
@@ -39,6 +41,7 @@ const QuizPage = () => {
     });
 
     setQuiz(modifiedQuiz);
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -120,29 +123,37 @@ const QuizPage = () => {
   });
   return (
     <div>
-      <h1 className="flex w-full justify-center mt-10 mb-14 font-bold font-karla text-5xl text-[#293264]">
-        Quizzical
-      </h1>
-      {renderedQuestions}
-      {hasCheckedAnswers ? (
-        <div className="flex justify-center space-x-4">
-          <p className="my-10 py-4 px-6 text-sm">
-            You scored {score}/{quiz.length} correct answers
-          </p>
-          <button
-            className="my-10 py-4 px-6 rounded-2xl text-white bg-[#4D5B9E] text-sm"
-            onClick={playAgain}
-          >
-            Play Again
-          </button>
-        </div>
+      {loading ? (
+        // Render skeleton screen
+        <div className="text-3xl font-bold">Loading ⏳...</div>
       ) : (
-        <button
-          className="block mx-auto my-10 py-4 px-6 rounded-2xl text-white bg-[#4D5B9E] text-sm"
-          onClick={checkAnswers}
-        >
-          Check Answers
-        </button>
+        // Render Quiz
+        <>
+          <h1 className="flex w-full justify-center mt-10 mb-14 font-bold font-karla text-5xl text-[#293264]">
+            Quizzical
+          </h1>
+          {renderedQuestions}
+          {hasCheckedAnswers ? (
+            <div className="flex justify-center space-x-4">
+              <p className="my-10 py-4 px-6 text-sm">
+                You scored {score}/{quiz.length} correct answers
+              </p>
+              <button
+                className="my-10 py-4 px-6 rounded-2xl text-white bg-[#4D5B9E] text-sm"
+                onClick={playAgain}
+              >
+                Play Again
+              </button>
+            </div>
+          ) : (
+            <button
+              className="block mx-auto my-10 py-4 px-6 rounded-2xl text-white bg-[#4D5B9E] text-sm"
+              onClick={checkAnswers}
+            >
+              Check Answers
+            </button>
+          )}
+        </>
       )}
     </div>
   );
