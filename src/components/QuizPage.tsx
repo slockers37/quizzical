@@ -85,7 +85,7 @@ const QuizPage = ({ difficulty, category, resetQuiz }: QuizPageProps) => {
   const renderedQuestions = quiz.map((question: Quiz) => {
     return (
       <div key={question.question}>
-        <h2 className="text-[#293264] mx-6 md:mx-10 font-bold text-xl">
+        <h2 className="text-[#293264] mx-6 md:mx-10 font-bold text-md md:text-xl">
           {decode(question.question)}
         </h2>
         <div className="flex max-w-xl md:max-w-2xl mx-6 my-4 md:mx-10 md:my-4 gap-3">
@@ -127,7 +127,7 @@ const QuizPage = ({ difficulty, category, resetQuiz }: QuizPageProps) => {
     );
   });
   return (
-    <div className="flex flex-col justify-between">
+    <div className="flex flex-col">
       {loading ? (
         // Render skeleton screen
         <div className="text-3xl font-bold">Loading ⏳...</div>
@@ -136,11 +136,11 @@ const QuizPage = ({ difficulty, category, resetQuiz }: QuizPageProps) => {
         <>
           <h1
             onClick={resetQuiz}
-            className="flex w-full justify-center cursor-pointer mt-10 mb-14 font-bold font-karla text-3xl text-[#293264] md:text-4xl"
+            className="flex w-full justify-center cursor-pointer mt-6 mb-8 md:mb-14 md:mt-10 font-bold font-karla text-3xl text-[#293264] md:text-4xl"
           >
             Quizzical
           </h1>
-          <div className="overflow-y-auto">
+          <div className="overflow-y-auto space-y-4 pb-10">
             {renderedQuestions}
             {hasCheckedAnswers ? (
               <div className="flex justify-center space-x-4">

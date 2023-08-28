@@ -19,7 +19,7 @@ function App() {
   };
 
   return (
-    <div className="flex justify-center items-center bg-blue-50 h-screen">
+    <div className="flex justify-center items-center bg-blue-50 min-h-screen">
       {isStartPage ? (
         <StartPage startQuiz={startQuiz} />
       ) : (
