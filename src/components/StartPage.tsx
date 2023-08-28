@@ -25,7 +25,7 @@ const StartPage: React.FC<StartPageProps> = ({ startQuiz }) => {
       <h1 className="mb-10 font-karla font-bold text-6xl text-[#293264]">
         Quizzical
       </h1>
-      <form onSubmit={handleSubmit} className="w-1/2 space-y-4">
+      <form onSubmit={handleSubmit} className="w-1/2 lg:max-w-md space-y-4">
         <Select onValueChange={(value) => setDifficulty(value as string)}>
           <SelectTrigger className="w-full">
             <SelectValue placeholder="Difficulty" />
