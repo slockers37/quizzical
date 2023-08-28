@@ -1,30 +1,25 @@
 import { useState } from "react";
 import "./App.css";
 import QuizPage from "./components/QuizPage";
+import StartPage from "./components/StartPage";
 
 function App() {
   const [hasStarted, setHasStarted] = useState(false);
+  const [difficulty, setDifficulty] = useState("easy");
+  const [category, setCategory] = useState("18");
 
-  const startQuiz = () => {
+  const startQuiz = (difficulty: string, category: string) => {
+    setDifficulty(difficulty);
+    setCategory(category);
     setHasStarted(true);
   };
 
   return (
     <div className="flex justify-center items-center bg-blue-50 h-screen">
       {hasStarted ? (
-        <QuizPage />
+        <QuizPage difficulty={difficulty} category={category} />
       ) : (
-        <div className="bg-blue-50 flex flex-col items-center justify-center w-full h-full">
-          <h1 className="mb-10 font-karla font-bold text-6xl text-[#293264]">
-            Quizzical
-          </h1>
-          <button
-            className="py-4 px-12 rounded-2xl text-xl text-white bg-[#4D5B9E]"
-            onClick={startQuiz}
-          >
-            Start Quiz
-          </button>
-        </div>
+        <StartPage startQuiz={startQuiz} />
       )}
     </div>
   );

@@ -14,7 +14,12 @@ interface Quiz extends Question {
   all_answers: string[];
 }
 
-const QuizPage = () => {
+interface QuizPageProps {
+  difficulty: string;
+  category: string;
+}
+
+const QuizPage = ({ difficulty, category }: QuizPageProps) => {
   const [quiz, setQuiz] = useState<Quiz[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedAnswers, setSelectedAnswers] = useState<{
@@ -26,8 +31,7 @@ const QuizPage = () => {
 
   const getQuiz = async () => {
     setLoading(true);
-    const QUIZ_URL =
-      "https://opentdb.com/api.php?amount=5&category=18&difficulty=easy&type=multiple";
+    const QUIZ_URL = `https://opentdb.com/api.php?amount=5&category=${category}&difficulty=${difficulty}&type=multiple`;
     const res = await fetch(QUIZ_URL);
     const data = await res.json();
     const modifiedQuiz = data.results.map((question: Question) => {
@@ -46,7 +50,7 @@ const QuizPage = () => {
 
   useEffect(() => {
     getQuiz();
-  }, []);
+  }, [difficulty, category]);
 
   const handleAnswerChange = (questionId: string, answer: string) => {
     setSelectedAnswers((prevSelectedAnswers) => ({
