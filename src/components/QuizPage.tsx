@@ -47,10 +47,10 @@ const QuizPage = () => {
   const renderedQuestions = quiz.map((question: Quiz) => {
     return (
       <div key={question.question}>
-        <h2 className="text-[#293264] mx-4 font-bold text-xl">
+        <h2 className="text-[#293264] mx-6 md:mx-10 font-bold text-xl">
           {decode(question.question)}
         </h2>
-        <div className="flex max-w-xl md:max-w-2xl m-4 gap-3">
+        <div className="flex max-w-xl md:max-w-2xl mx-6 my-4 md:mx-10 md:my-4 gap-3">
           {question.all_answers.map((answer, index) => (
             <div key={index}>
               <input
