@@ -30,7 +30,7 @@ const StartPage: React.FC<StartPageProps> = ({ startQuiz }) => {
           <SelectTrigger className="w-full">
             <SelectValue placeholder="Difficulty" />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent side="top">
             <SelectItem value="easy">Easy</SelectItem>
             <SelectItem value="medium">Medium</SelectItem>
             <SelectItem value="hard">Hard</SelectItem>

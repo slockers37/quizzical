@@ -127,7 +127,7 @@ const QuizPage = ({ difficulty, category, resetQuiz }: QuizPageProps) => {
     );
   });
   return (
-    <div>
+    <div className="flex flex-col justify-between">
       {loading ? (
         // Render skeleton screen
         <div className="text-3xl font-bold">Loading ⏳...</div>
@@ -136,31 +136,33 @@ const QuizPage = ({ difficulty, category, resetQuiz }: QuizPageProps) => {
         <>
           <h1
             onClick={resetQuiz}
-            className="flex w-full justify-center cursor-pointer mt-10 mb-14 font-bold font-karla text-5xl text-[#293264]"
+            className="flex w-full justify-center cursor-pointer mt-10 mb-14 font-bold font-karla text-3xl text-[#293264] md:text-4xl"
           >
             Quizzical
           </h1>
-          {renderedQuestions}
-          {hasCheckedAnswers ? (
-            <div className="flex justify-center space-x-4">
-              <p className="my-10 py-4 px-6 text-sm">
-                You scored {score}/{quiz.length} correct answers
-              </p>
+          <div className="overflow-y-auto">
+            {renderedQuestions}
+            {hasCheckedAnswers ? (
+              <div className="flex justify-center space-x-4">
+                <p className="my-10 py-4 px-6 text-sm">
+                  You scored {score}/{quiz.length} correct answers
+                </p>
+                <button
+                  className="my-10 py-4 px-6 rounded-2xl text-white bg-[#4D5B9E] text-sm"
+                  onClick={playAgain}
+                >
+                  Play Again
+                </button>
+              </div>
+            ) : (
               <button
-                className="my-10 py-4 px-6 rounded-2xl text-white bg-[#4D5B9E] text-sm"
-                onClick={playAgain}
+                className="block mx-auto my-10 py-4 px-6 rounded-2xl text-white bg-[#4D5B9E] text-sm"
+                onClick={checkAnswers}
               >
-                Play Again
+                Check Answers
               </button>
-            </div>
-          ) : (
-            <button
-              className="block mx-auto my-10 py-4 px-6 rounded-2xl text-white bg-[#4D5B9E] text-sm"
-              onClick={checkAnswers}
-            >
-              Check Answers
-            </button>
-          )}
+            )}
+          </div>
         </>
       )}
     </div>
