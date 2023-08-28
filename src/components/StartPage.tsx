@@ -43,16 +43,16 @@ const StartPage: React.FC<StartPageProps> = ({ startQuiz }) => {
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="9">General Knowledge</SelectItem>
+            <SelectItem value="21">Sports</SelectItem>
+            <SelectItem value="24">Politics</SelectItem>
+            <SelectItem value="26">Celebrities</SelectItem>
+            <SelectItem value="17">Science & Nature</SelectItem>
+            <SelectItem value="18">Science: Computers</SelectItem>
+            <SelectItem value="19">Science: Mathematics</SelectItem>
             <SelectItem value="11">Entertainment: Film</SelectItem>
             <SelectItem value="12">Entertainment: Music</SelectItem>
             <SelectItem value="14">Entertainment: Television</SelectItem>
             <SelectItem value="15">Entertainment: Video Games</SelectItem>
-            <SelectItem value="17">Science & Nature</SelectItem>
-            <SelectItem value="18">Science: Computers</SelectItem>
-            <SelectItem value="19">Science: Mathematics</SelectItem>
-            <SelectItem value="21">Sports</SelectItem>
-            <SelectItem value="24">Politics</SelectItem>
-            <SelectItem value="26">Celebrities</SelectItem>
             <SelectItem value="31">
               Entertainment: Japanese Anime & Manga
             </SelectItem>
