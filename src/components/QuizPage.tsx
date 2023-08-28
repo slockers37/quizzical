@@ -1,9 +1,21 @@
-import { Quiz, useQuizStore } from "@/store";
 import { decode } from "html-entities";
 import { useEffect, useState } from "react";
 
+interface Question {
+  category: string;
+  correct_answer: string;
+  difficulty: string;
+  incorrect_answers: string[];
+  question: string;
+  type: string;
+}
+
+interface Quiz extends Question {
+  all_answers: string[];
+}
+
 const QuizPage = () => {
-  const [quiz, getQuiz] = useQuizStore((state) => [state.quiz, state.getQuiz]);
+  const [quiz, setQuiz] = useState<Quiz[]>([]);
   const [selectedAnswers, setSelectedAnswers] = useState<{
     [key: string]: string;
   }>({});
@@ -11,9 +23,27 @@ const QuizPage = () => {
   const [hasCheckedAnswers, setHasCheckedAnswers] = useState(false);
   const [score, setScore] = useState<number | null>(null);
 
+  const getQuiz = async () => {
+    const QUIZ_URL =
+      "https://opentdb.com/api.php?amount=5&category=18&difficulty=easy&type=multiple";
+    const res = await fetch(QUIZ_URL);
+    const data = await res.json();
+    const modifiedQuiz = data.results.map((question: Question) => {
+      const allAnswers = [...question.incorrect_answers];
+      const randomIndex = Math.floor(Math.random() * (allAnswers.length + 1));
+      allAnswers.splice(randomIndex, 0, question.correct_answer);
+      return {
+        ...question,
+        all_answers: allAnswers,
+      };
+    });
+
+    setQuiz(modifiedQuiz);
+  };
+
   useEffect(() => {
     getQuiz();
-  }, [getQuiz]);
+  }, []);
 
   const handleAnswerChange = (questionId: string, answer: string) => {
     setSelectedAnswers((prevSelectedAnswers) => ({
