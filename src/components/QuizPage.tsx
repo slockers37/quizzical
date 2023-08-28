@@ -143,12 +143,12 @@ const QuizPage = ({ difficulty, category, resetQuiz }: QuizPageProps) => {
           <div className="overflow-y-auto space-y-4 pb-10">
             {renderedQuestions}
             {hasCheckedAnswers ? (
-              <div className="flex justify-center space-x-4">
-                <p className="my-10 py-4 px-6 text-sm">
+              <div className="flex justify-center items-center space-x-4">
+                <p className="my-10 py-4 px-6 text-md md:text-lg lg:text-xl">
                   You scored {score}/{quiz.length} correct answers
                 </p>
                 <button
-                  className="my-10 py-4 px-6 rounded-2xl text-white bg-[#4D5B9E] text-sm"
+                  className="my-10 py-4 px-6 md:px-8 md:py-6 rounded-2xl text-white bg-[#4D5B9E] text-md md:text-lg lg:text-xl"
                   onClick={playAgain}
                 >
                   Play Again
