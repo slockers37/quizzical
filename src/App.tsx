@@ -19,7 +19,7 @@ function App() {
             Quizzical
           </h1>
           <button
-            className="py-4 px-6 rounded-md text-white bg-[#4D5B9E]"
+            className="py-4 px-12 rounded-2xl text-xl text-white bg-[#4D5B9E]"
             onClick={startQuiz}
           >
             Start Quiz
