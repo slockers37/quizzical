@@ -1,10 +1,5 @@
 import { create } from "zustand";
 
-interface QuizState {
-  quiz: [];
-  getQuiz: () => void;
-}
-
 export interface Question {
   category: string;
   correct_answer: string;
@@ -14,21 +9,22 @@ export interface Question {
   type: string;
 }
 
-export interface Quiz {
-  category: string;
-  correct_answer: string;
-  difficulty: string;
-  incorrect_answers: string[];
-  question: string;
-  type: string;
+export interface Quiz extends Question {
   all_answers: string[];
+  isCorrect?: boolean;
+}
+
+interface QuizState {
+  quiz: Quiz[];
+  getQuiz: () => void;
+  setQuiz: (quiz: Quiz[]) => void;
 }
 
 export const useQuizStore = create<QuizState>()((set) => ({
   quiz: [],
   getQuiz: async () => {
     const QUIZ_URL =
-      "https://opentdb.com/api.php?amount=5&category=11&difficulty=medium&type=multiple";
+      "https://opentdb.com/api.php?amount=5&category=18&difficulty=easy&type=multiple";
     const res = await fetch(QUIZ_URL);
     const data = await res.json();
     const modifiedQuiz = data.results.map((question: Question) => {
@@ -43,4 +39,5 @@ export const useQuizStore = create<QuizState>()((set) => ({
 
     set({ quiz: modifiedQuiz });
   },
+  setQuiz: (quiz: Quiz[]) => set({ quiz: quiz }),
 }));
