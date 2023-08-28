@@ -1,6 +1,6 @@
 # Quizzical 🤔
 
-A Simple Trivia App built using Vite + React + Typescript. This project is a part of the [#100DaysOfCode](https://www.100daysofcode.com/) challenge.
+A Simple Trivia App built using Vite + React + Typescript.
 
 ## Demo
 
